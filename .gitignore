@@ -1,4 +1,2 @@
-packer_arch_virtualbox.box
-packer_arch_vmware.box
+output/*.box
 packer_cache
-output-vmware
