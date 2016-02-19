@@ -70,7 +70,6 @@ cat <<-EOF > "${TARGET_DIR}${CONFIG_SCRIPT}"
 
 	# clean up
 	/usr/bin/pacman -Rcns --noconfirm gptfdisk
-	/usr/bin/yes | /usr/bin/pacman -Scc
 EOF
 
 echo '==> entering chroot and configuring system'
