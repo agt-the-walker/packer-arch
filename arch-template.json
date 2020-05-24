@@ -1,7 +1,7 @@
 {
     "variables": {
-        "iso_url": "https://mirrors.kernel.org/archlinux/iso/2018.03.01/archlinux-2018.03.01-x86_64.iso",
-        "iso_checksum_url": "https://mirrors.kernel.org/archlinux/iso/2018.03.01/sha1sums.txt",
+        "iso_url": "https://mirrors.kernel.org/archlinux/iso/{{isotime \"2006.01\"}}.01/archlinux-{{isotime \"2006.01\"}}.01-x86_64.iso",
+        "iso_checksum_url": "https://mirrors.kernel.org/archlinux/iso/{{isotime \"2006.01\"}}.01/sha1sums.txt",
         "iso_checksum_type": "sha1",
         "ssh_timeout": "20m",
         "country": "US",
@@ -114,6 +114,12 @@
             "script": "scripts/install-virtualbox.sh"
         },
         {
+            "only": ["vmware-iso"],
+            "type": "shell",
+            "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+            "script": "scripts/install-vmware.sh"
+        },
+        {
             "type": "shell",
             "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
             "script": "scripts/cleanup.sh"
@@ -122,7 +128,7 @@
     "post-processors": [
         {
             "type": "vagrant",
-            "output": "output/packer_arch_{{ .Provider }}.box"
+            "output": "output/packer_arch_{{ .Provider }}-{{isotime \"2006.01\"}}.01.box"
         }
     ]
 }
