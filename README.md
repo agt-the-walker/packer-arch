@@ -19,7 +19,7 @@ My goal was to roughly duplicate the attributes from a
 * 512 MB memory
 * A /root partition (ext4) and another, unformatted, partition
 * No swap
-* Includes the `base` and `base-devel` package groups
+* Includes the `base` meta package and `base-devel` group
 * OpenSSH is also installed and enabled on boot
 
 The installation script follows the
@@ -102,6 +102,10 @@ code in order to build the final box.
 
     $ wrapacker --country US --dry-run
 
+For debugging purposes, execute:
+
+    $ PACKER_LOG=1 ./wrapacker --country=US --provider=virtualbox --on-error=ask --force
+
 See the `--help` flag for additional details.
 
 Known Issues
@@ -131,7 +135,7 @@ guest additions work just fine.
 
 ### Vagrant Provisioners
 
-The box purposefully does not include Puppet or Chef for automatic Vagrant
+The box purposefully does not include Puppet, Chef or Ansible for automatic Vagrant
 provisioning. My intention was to duplicate a DigitalOcean VPS and
 furthermore use the VM for testing [Ansible](http://www.ansible.com/)
 playbooks for configuration management.
